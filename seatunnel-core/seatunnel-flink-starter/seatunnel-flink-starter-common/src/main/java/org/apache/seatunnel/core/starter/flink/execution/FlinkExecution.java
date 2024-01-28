@@ -66,7 +66,7 @@ public class FlinkExecution implements TaskExecution {
     private final PluginExecuteProcessor<DataStreamTableInfo, FlinkRuntimeEnvironment>
             sinkPluginExecuteProcessor;
     private final List<URL> jarPaths;
-
+    //todo config就是用户定义的配置文件
     public FlinkExecution(Config config) {
         try {
             jarPaths =
@@ -85,7 +85,7 @@ public class FlinkExecution implements TaskExecution {
         registerPlugin(envConfig);
         JobContext jobContext = new JobContext();
         jobContext.setJobMode(RuntimeEnvironment.getJobMode(config));
-
+        //todo 初始化source、transform、sink
         this.sourcePluginExecuteProcessor =
                 new SourceExecuteProcessor(
                         jarPaths, envConfig, config.getConfigList(Constants.SOURCE), jobContext);
@@ -107,7 +107,7 @@ public class FlinkExecution implements TaskExecution {
         this.transformPluginExecuteProcessor.setRuntimeEnvironment(flinkRuntimeEnvironment);
         this.sinkPluginExecuteProcessor.setRuntimeEnvironment(flinkRuntimeEnvironment);
     }
-
+    //todo 执行job！！！！！！
     @Override
     public void execute() throws TaskExecuteException {
         List<DataStreamTableInfo> dataStreams = new ArrayList<>();

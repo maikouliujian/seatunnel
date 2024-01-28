@@ -55,6 +55,7 @@ public class KafkaConsumerThread implements Runnable {
                 try {
                     Consumer<KafkaConsumer<byte[], byte[]>> task = tasks.poll(1, TimeUnit.SECONDS);
                     if (task != null) {
+                        //todo 读取数据！！！！！！
                         task.accept(consumer);
                     }
                 } catch (Exception e) {

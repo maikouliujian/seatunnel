@@ -57,6 +57,7 @@ public class SparkTaskExecuteCommand implements Command<SparkCommandArgs> {
         }
         try {
             SparkExecution seaTunnelTaskExecution = new SparkExecution(config);
+            //todo spark的执行逻辑
             seaTunnelTaskExecution.execute();
         } catch (Exception e) {
             throw new CommandExecuteException("Run SeaTunnel on spark failed", e);

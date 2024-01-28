@@ -62,7 +62,7 @@ public class SparkExecution implements TaskExecution {
                 new SinkExecuteProcessor(
                         sparkRuntimeEnvironment, jobContext, config.getConfigList(Constants.SINK));
     }
-
+    //todo 组装dataset
     @Override
     public void execute() throws TaskExecuteException {
         List<DatasetTableInfo> datasets = new ArrayList<>();

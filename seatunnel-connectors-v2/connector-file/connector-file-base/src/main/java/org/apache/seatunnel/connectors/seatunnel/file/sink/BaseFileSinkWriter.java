@@ -43,6 +43,7 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+//todo 写文件！！！！！！
 public class BaseFileSinkWriter
         implements SinkWriter<SeaTunnelRow, FileCommitInfo, FileSinkState>,
                 SupportMultiTableSinkWriter<WriteStrategy> {

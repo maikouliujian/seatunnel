@@ -185,7 +185,7 @@ public class FlinkRuntimeEnvironment implements RuntimeEnvironment {
         // init flink table env config
         EnvironmentUtil.initTableEnvironmentConfiguration(this.config, config.getConfiguration());
     }
-
+    //todo 初始化flink StreamEnvironment
     private void createStreamEnvironment() {
         Configuration configuration = new Configuration();
         EnvironmentUtil.initConfiguration(config, configuration);

@@ -18,6 +18,7 @@
 package org.apache.seatunnel.common.constants;
 
 /** The type of SeaTunnel plugin. */
+//todo 插件类型
 public enum PluginType {
     SOURCE("source"),
     TRANSFORM("transform"),

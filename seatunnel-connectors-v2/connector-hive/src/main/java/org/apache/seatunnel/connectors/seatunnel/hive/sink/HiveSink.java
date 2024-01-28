@@ -68,6 +68,7 @@ import static org.apache.seatunnel.connectors.seatunnel.hive.config.HiveConfig.P
 import static org.apache.seatunnel.connectors.seatunnel.hive.config.HiveConfig.TABLE_NAME;
 import static org.apache.seatunnel.connectors.seatunnel.hive.config.HiveConfig.TEXT_OUTPUT_FORMAT_CLASSNAME;
 
+//todo hive sink
 @AutoService(SeaTunnelSink.class)
 public class HiveSink extends BaseHdfsFileSink {
     private String dbName;

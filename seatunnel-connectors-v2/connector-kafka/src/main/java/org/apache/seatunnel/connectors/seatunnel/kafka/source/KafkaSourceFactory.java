@@ -30,7 +30,7 @@ import org.apache.seatunnel.connectors.seatunnel.kafka.config.StartMode;
 import com.google.auto.service.AutoService;
 
 import java.io.Serializable;
-
+//todo KafkaSourceFactory
 @AutoService(Factory.class)
 public class KafkaSourceFactory implements TableSourceFactory {
 

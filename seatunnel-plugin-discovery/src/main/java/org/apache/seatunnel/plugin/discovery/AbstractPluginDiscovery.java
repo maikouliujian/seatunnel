@@ -62,7 +62,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 public abstract class AbstractPluginDiscovery<T> implements PluginDiscovery<T> {
-
+    //todo 插件信息
     private static final String PLUGIN_MAPPING_FILE = "plugin-mapping.properties";
 
     /**
@@ -109,7 +109,7 @@ public abstract class AbstractPluginDiscovery<T> implements PluginDiscovery<T> {
         this.addURLToClassLoaderConsumer = addURLToClassLoaderConsumer;
         log.info("Load {} Plugin from {}", getPluginBaseClass().getSimpleName(), pluginDir);
     }
-
+    //todo 加载配置
     protected static Config loadConnectorPluginConfig() {
         return ConfigFactory.parseFile(Common.connectorDir().resolve(PLUGIN_MAPPING_FILE).toFile())
                 .resolve(ConfigResolveOptions.defaults().setAllowUnresolved(true))
@@ -180,6 +180,7 @@ public abstract class AbstractPluginDiscovery<T> implements PluginDiscovery<T> {
     public Optional<T> createOptionalPluginInstance(
             PluginIdentifier pluginIdentifier, Collection<URL> pluginJars) {
         ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+        //todo 找到对应的插件
         T pluginInstance = loadPluginInstance(pluginIdentifier, classLoader);
         if (pluginInstance != null) {
             log.info("Load plugin: {} from classpath", pluginIdentifier);
@@ -238,6 +239,7 @@ public abstract class AbstractPluginDiscovery<T> implements PluginDiscovery<T> {
      */
     public Map<PluginType, LinkedHashMap<PluginIdentifier, OptionRule>> getAllPlugin()
             throws IOException {
+        //todo 通过spi加载所有的Factory的实现类
         List<Factory> factories;
         if (this.pluginDir.toFile().exists()) {
             log.info("load plugin from plugin dir: {}", this.pluginDir);
@@ -254,6 +256,7 @@ public abstract class AbstractPluginDiscovery<T> implements PluginDiscovery<T> {
 
         factories.forEach(
                 plugin -> {
+                    //todo source
                     if (TableSourceFactory.class.isAssignableFrom(plugin.getClass())) {
                         TableSourceFactory tableSourceFactory = (TableSourceFactory) plugin;
                         plugins.computeIfAbsent(PluginType.SOURCE, k -> new LinkedHashMap<>());
@@ -267,7 +270,7 @@ public abstract class AbstractPluginDiscovery<T> implements PluginDiscovery<T> {
                                         FactoryUtil.sourceFullOptionRule(tableSourceFactory));
                         return;
                     }
-
+                    //todo sink
                     if (TableSinkFactory.class.isAssignableFrom(plugin.getClass())) {
                         plugins.computeIfAbsent(PluginType.SINK, k -> new LinkedHashMap<>());
 
@@ -280,7 +283,7 @@ public abstract class AbstractPluginDiscovery<T> implements PluginDiscovery<T> {
                                         FactoryUtil.sinkFullOptionRule((TableSinkFactory) plugin));
                         return;
                     }
-
+                    //todo transform
                     if (TableTransformFactory.class.isAssignableFrom(plugin.getClass())) {
                         plugins.computeIfAbsent(PluginType.TRANSFORM, k -> new LinkedHashMap<>());
 
@@ -298,6 +301,7 @@ public abstract class AbstractPluginDiscovery<T> implements PluginDiscovery<T> {
     }
 
     protected T loadPluginInstance(PluginIdentifier pluginIdentifier, ClassLoader classLoader) {
+        //todo spi
         ServiceLoader<T> serviceLoader = ServiceLoader.load(getPluginBaseClass(), classLoader);
         for (T t : serviceLoader) {
             if (t instanceof PluginIdentifierInterface) {

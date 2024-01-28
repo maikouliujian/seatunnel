@@ -92,10 +92,12 @@ public class TransformExecuteProcessor
                                 ReadonlyConfig.fromConfig(pluginConfig),
                                 classLoader);
                 ConfigValidator.of(context.getOptions()).validate(factory.optionRule());
+                //todo transform
                 SeaTunnelTransform transform = factory.createTransform(context).createTransform();
 
                 SeaTunnelRowType sourceType = stream.getCatalogTable().getSeaTunnelRowType();
                 transform.setJobContext(jobContext);
+                //todo 转换后的DataStream
                 DataStream<Row> inputStream =
                         flinkTransform(sourceType, transform, stream.getDataStream());
                 registerResultTable(pluginConfig, inputStream);
@@ -120,7 +122,9 @@ public class TransformExecuteProcessor
     protected DataStream<Row> flinkTransform(
             SeaTunnelRowType sourceType, SeaTunnelTransform transform, DataStream<Row> stream) {
         TypeInformation rowTypeInfo = TypeConverterUtils.convert(transform.getProducedType());
+        //todo flink row--->SeaTunnelRow
         FlinkRowConverter transformInputRowConverter = new FlinkRowConverter(sourceType);
+        //todo SeaTunnelRow---> flink row
         FlinkRowConverter transformOutputRowConverter =
                 new FlinkRowConverter(transform.getProducedCatalogTable().getSeaTunnelRowType());
         DataStream<Row> output =

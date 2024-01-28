@@ -193,6 +193,7 @@ public class SparkStarter implements Starter {
     }
 
     /** build final spark-submit commands */
+    //todo 组装spark向yarn提交的命令
     protected List<String> buildFinal() {
         List<String> commands = new ArrayList<>();
         commands.add("${SPARK_HOME}/bin/spark-submit");

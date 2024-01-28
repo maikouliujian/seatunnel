@@ -35,6 +35,7 @@ import java.nio.file.Path;
 
 import static org.apache.seatunnel.core.starter.utils.FileUtils.checkConfigExist;
 
+//todo flink任务的入口
 @Slf4j
 public class FlinkTaskExecuteCommand implements Command<FlinkCommandArgs> {
 
@@ -46,6 +47,7 @@ public class FlinkTaskExecuteCommand implements Command<FlinkCommandArgs> {
 
     @Override
     public void execute() throws CommandExecuteException {
+        //todo 读取配置文件
         Path configFile = FileUtils.getConfigPath(flinkCommandArgs);
         checkConfigExist(configFile);
         Config config = ConfigBuilder.of(configFile);
@@ -56,6 +58,7 @@ public class FlinkTaskExecuteCommand implements Command<FlinkCommandArgs> {
                             ConfigUtil.joinPath("env", "job.name"),
                             ConfigValueFactory.fromAnyRef(flinkCommandArgs.getJobName()));
         }
+        //todo 构建并执行flink任务
         FlinkExecution seaTunnelTaskExecution = new FlinkExecution(config);
         try {
             seaTunnelTaskExecution.execute();

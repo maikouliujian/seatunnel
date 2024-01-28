@@ -35,6 +35,7 @@ import java.util.List;
  * @param <SplitT> The type of splits handled by the source.
  * @param <StateT> The type of checkpoint states.
  */
+//todo 【source的父类】
 public interface SeaTunnelSource<T, SplitT extends SourceSplit, StateT extends Serializable>
         extends Serializable,
                 PluginIdentifierInterface,

@@ -48,6 +48,7 @@ public class SparkSinkInjector {
             DataFrameWriter<Row> dataset,
             SeaTunnelSink<?, ?, ?, ?> sink,
             CatalogTable catalogTable) {
+        //todo 通过format是SeaTunnelSource===>找到了SeaTunnelSparkSource
         return dataset.format(SPARK_SINK_CLASS_NAME)
                 .option(Constants.SINK_SERIALIZATION, SerializationUtils.objectToString(sink))
                 .option(SINK_CATALOG_TABLE, SerializationUtils.objectToString(catalogTable));

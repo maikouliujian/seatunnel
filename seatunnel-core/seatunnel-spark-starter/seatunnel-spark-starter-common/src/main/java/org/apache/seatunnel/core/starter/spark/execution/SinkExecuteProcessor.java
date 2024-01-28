@@ -149,6 +149,7 @@ public class SinkExecuteProcessor
                     }
                 }
             }
+            //todo sink
             SparkSinkInjector.inject(dataset.write(), sink, datasetTableInfo.getCatalogTable())
                     .option("checkpointLocation", "/tmp")
                     .mode(SaveMode.Append)

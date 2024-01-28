@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Objects;
 
 /** The SeaTunnel flink starter, used to generate the final flink job execute command. */
+//todo 【提交flink任务的启动类】
 public class FlinkStarter implements Starter {
     private static final String APP_NAME = SeaTunnelFlink.class.getName();
     public static final String APP_JAR_NAME = EngineType.FLINK15.getStarterJarName();
@@ -46,9 +47,10 @@ public class FlinkStarter implements Starter {
 
     public static void main(String[] args) {
         FlinkStarter flinkStarter = new FlinkStarter(args);
+        //todo 打印出来就能执行？？？
         System.out.println(String.join(" ", flinkStarter.buildCommands()));
     }
-
+    //todo 启动命令
     @Override
     public List<String> buildCommands() {
         List<String> command = new ArrayList<>();
@@ -65,11 +67,13 @@ public class FlinkStarter implements Starter {
         command.addAll(flinkCommandArgs.getOriginalParameters());
         // set main class name
         command.add("-c");
+        //todo flink程序的main class
         command.add(APP_NAME);
         // set main jar name
         command.add(appJar);
         // set config file path
         command.add("--config");
+        //todo 配置文件
         command.add(flinkCommandArgs.getConfigFile());
         // set check config flag
         if (flinkCommandArgs.isCheckConfig()) {

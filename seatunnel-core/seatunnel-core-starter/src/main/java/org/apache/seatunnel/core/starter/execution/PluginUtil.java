@@ -52,6 +52,7 @@ import static org.apache.seatunnel.api.table.factory.FactoryUtil.DEFAULT_ID;
 import static org.apache.seatunnel.api.table.factory.FactoryUtil.discoverFactory;
 
 /** The util used for Spark/Flink to create to SeaTunnelSource etc. */
+//todo 创建source/transform/sink
 public class PluginUtil {
 
     protected static final String ENGINE_TYPE = "seatunnel";
@@ -69,14 +70,17 @@ public class PluginUtil {
 
         final ReadonlyConfig readonlyConfig = ReadonlyConfig.fromConfig(pluginConfig);
         // try to find table source factory
+        //todo 寻找table source factory
         final Optional<Factory> sourceFactory =
                 factoryDiscovery.createOptionalPluginInstance(pluginIdentifier);
         final boolean fallback = isFallback(sourceFactory);
         SeaTunnelSource source;
         if (fallback) {
+            //todo 直接返回可以通过spi直接拿到的source【不需要通过factory】
             source = fallbackCreate(sourcePluginDiscovery, pluginIdentifier, pluginConfig);
         } else {
             // create source with source factory
+            //todo 通过SourceFactory拿到source
             TableSourceFactoryContext context =
                     new TableSourceFactoryContext(readonlyConfig, classLoader);
             ConfigValidator.of(context.getOptions()).validate(sourceFactory.get().optionRule());
@@ -85,6 +89,7 @@ public class PluginUtil {
             source = tableSource.createSource();
         }
         source.setJobContext(jobContext);
+        //todo 校验运行模式
         ensureJobModeMatch(jobContext, source);
         List<CatalogTable> catalogTables;
         try {

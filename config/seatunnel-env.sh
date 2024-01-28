@@ -15,7 +15,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
+# todo 配置环境变量
 # Home directory of spark distribution.
 SPARK_HOME=${SPARK_HOME:-/opt/spark}
 # Home directory of flink distribution.

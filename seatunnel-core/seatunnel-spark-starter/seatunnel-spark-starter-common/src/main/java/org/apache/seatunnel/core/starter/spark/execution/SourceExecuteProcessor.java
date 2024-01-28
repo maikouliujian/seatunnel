@@ -87,11 +87,14 @@ public class SourceExecuteProcessor extends SparkAbstractPluginExecuteProcessor<
                                         CommonOptions.PARALLELISM.key(),
                                         CommonOptions.PARALLELISM.defaultValue());
             }
+            //todo seatunnel类型--->spark sql 类型
             StructType schema = (StructType) TypeConverterUtils.convert(source.getProducedType());
+            //todo 读取source为dataset
             Dataset<Row> dataset =
                     sparkRuntimeEnvironment
                             .getSparkSession()
                             .read()
+                            //todo 通过format是SeaTunnelSource===>找到了SeaTunnelSparkSource
                             .format(SeaTunnelSource.class.getSimpleName())
                             .option(CommonOptions.PARALLELISM.key(), parallelism)
                             .option(

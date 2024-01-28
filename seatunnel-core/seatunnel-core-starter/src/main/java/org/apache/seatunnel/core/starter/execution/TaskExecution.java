@@ -23,6 +23,7 @@ import org.apache.seatunnel.core.starter.exception.TaskExecuteException;
  * Executes a SeaTunnel task of the specified engine, contained in the {@link
  * org.apache.seatunnel.core.starter.command.Command}
  */
+//todo 执行task的父类
 public interface TaskExecution {
 
     void execute() throws TaskExecuteException;

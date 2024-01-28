@@ -59,6 +59,7 @@ public class KafkaSourceReader implements SourceReader<SeaTunnelRow, KafkaSource
     private final ConsumerMetadata metadata;
     private final Set<KafkaSourceSplit> sourceSplits;
     private final Map<Long, Map<TopicPartition, Long>> checkpointOffsetMap;
+    //todo 一个分区对应一个线程
     private final Map<TopicPartition, KafkaConsumerThread> consumerThreadMap;
     private final ExecutorService executorService;
     private final DeserializationSchema<SeaTunnelRow> deserializationSchema;
@@ -101,7 +102,7 @@ public class KafkaSourceReader implements SourceReader<SeaTunnelRow, KafkaSource
             Thread.sleep(THREAD_WAIT_TIME);
             return;
         }
-
+        //todo 读取一批次的数据
         while (pendingPartitionsQueue.size() != 0) {
             sourceSplits.add(pendingPartitionsQueue.poll());
         }
@@ -111,6 +112,7 @@ public class KafkaSourceReader implements SourceReader<SeaTunnelRow, KafkaSource
                                 sourceSplit.getTopicPartition(),
                                 s -> {
                                     KafkaConsumerThread thread = new KafkaConsumerThread(metadata);
+                                    //todo 先启动所有consumer线程
                                     executorService.submit(thread);
                                     return thread;
                                 }));
@@ -127,8 +129,10 @@ public class KafkaSourceReader implements SourceReader<SeaTunnelRow, KafkaSource
                                                 Set<TopicPartition> partitions =
                                                         Sets.newHashSet(
                                                                 sourceSplit.getTopicPartition());
+                                                //todo 【手动分配分区===>这样consumer只消费partitions内的数据】
                                                 consumer.assign(partitions);
                                                 if (sourceSplit.getStartOffset() >= 0) {
+                                                    //todo 从startoffset开始消费数据
                                                     consumer.seek(
                                                             sourceSplit.getTopicPartition(),
                                                             sourceSplit.getStartOffset());
@@ -138,11 +142,13 @@ public class KafkaSourceReader implements SourceReader<SeaTunnelRow, KafkaSource
                                                                 Duration.ofMillis(POLL_TIMEOUT));
                                                 for (TopicPartition partition : partitions) {
                                                     List<ConsumerRecord<byte[], byte[]>>
+                                                            //todo 从records中提取指定分区的数据
                                                             recordList = records.records(partition);
                                                     for (ConsumerRecord<byte[], byte[]> record :
                                                             recordList) {
 
                                                         try {
+                                                            //todo 反序列化并发送数据！！！！！！
                                                             if (deserializationSchema
                                                                     instanceof
                                                                     CompatibleKafkaConnectDeserializationSchema) {
@@ -216,7 +222,7 @@ public class KafkaSourceReader implements SourceReader<SeaTunnelRow, KafkaSource
                                         KafkaSourceSplit::getStartOffset)));
         return sourceSplits.stream().map(KafkaSourceSplit::copy).collect(Collectors.toList());
     }
-
+    //todo 添加数据！！！！！！
     @Override
     public void addSplits(List<KafkaSourceSplit> splits) {
         running = true;
@@ -259,6 +265,7 @@ public class KafkaSourceReader implements SourceReader<SeaTunnelRow, KafkaSource
                                                                         topicPartition,
                                                                         new OffsetAndMetadata(
                                                                                 offset));
+                                                                //todo ckp结束后提交offset
                                                                 consumer.commitSync(offsets);
                                                             }
                                                         }

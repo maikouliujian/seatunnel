@@ -73,8 +73,9 @@ public class SourceExecuteProcessor extends FlinkAbstractPluginExecuteProcessor<
             if (internalSource instanceof SupportCoordinate) {
                 registerAppendStream(pluginConfig);
             }
+            //todo 创建FlinkSource
             FlinkSource flinkSource = new FlinkSource<>(internalSource, envConfig);
-
+            //todo 创建source DataStream
             DataStreamSource sourceStream =
                     executionEnvironment.fromSource(
                             flinkSource,
@@ -114,6 +115,7 @@ public class SourceExecuteProcessor extends FlinkAbstractPluginExecuteProcessor<
                             ENGINE_TYPE, PLUGIN_TYPE, sourceConfig.getString(PLUGIN_NAME.key()));
             jars.addAll(
                     sourcePluginDiscovery.getPluginJarPaths(Lists.newArrayList(pluginIdentifier)));
+            //todo
             SourceTableInfo source =
                     PluginUtil.createSource(
                             factoryDiscovery,

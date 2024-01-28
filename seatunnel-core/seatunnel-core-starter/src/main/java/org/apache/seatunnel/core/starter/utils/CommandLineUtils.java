@@ -38,9 +38,11 @@ public class CommandLineUtils {
 
     public static <T extends CommandArgs> T parse(
             String[] args, T obj, String programName, boolean acceptUnknownOptions) {
+        //todo 解析参数
         JCommander jCommander =
                 JCommander.newBuilder()
                         .programName(programName)
+                        //todo 将args解析为obj
                         .addObject(obj)
                         .acceptUnknownOptions(acceptUnknownOptions)
                         .build();

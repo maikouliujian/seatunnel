@@ -130,6 +130,7 @@ public class SinkExecuteProcessor
                     }
                 }
             }
+            //todo 构建sink DataStream
             DataStreamSink<Row> dataStreamSink =
                     stream.getDataStream()
                             .sinkTo(

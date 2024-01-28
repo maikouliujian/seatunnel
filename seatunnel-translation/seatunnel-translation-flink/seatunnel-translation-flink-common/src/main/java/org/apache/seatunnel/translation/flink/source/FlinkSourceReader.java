@@ -65,7 +65,7 @@ public class FlinkSourceReader<SplitT extends SourceSplit>
         this.flinkRowCollector =
                 new FlinkRowCollector(seaTunnelRowType, envConfig, context.getMetricsContext());
     }
-
+    //todo 1）启动reader
     @Override
     public void start() {
         try {
@@ -74,7 +74,7 @@ public class FlinkSourceReader<SplitT extends SourceSplit>
             throw new RuntimeException(e);
         }
     }
-
+    //todo 2）读取数据
     @Override
     public InputStatus pollNext(ReaderOutput<Row> output) throws Exception {
         if (!((FlinkSourceReaderContext) context).isSendNoMoreElementEvent()) {

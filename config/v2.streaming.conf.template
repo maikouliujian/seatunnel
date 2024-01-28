@@ -17,7 +17,7 @@
 ######
 ###### This config file is a demonstration of streaming processing in SeaTunnel config
 ######
-
+#todo 定义流任务模版
 env {
   # You can set SeaTunnel environment configuration here
   parallelism = 2

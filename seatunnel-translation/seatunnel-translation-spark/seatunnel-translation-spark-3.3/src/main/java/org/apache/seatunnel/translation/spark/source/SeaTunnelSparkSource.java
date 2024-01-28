@@ -27,6 +27,7 @@ import org.apache.spark.sql.util.CaseInsensitiveStringMap;
 import java.util.Map;
 
 /** SeaTunnel source class of Spark 3+, can be used as source */
+//todo spark的source类
 public class SeaTunnelSparkSource implements DataSourceRegister, TableProvider {
     private static final String SOURCE_NAME = "SeaTunnelSource";
 

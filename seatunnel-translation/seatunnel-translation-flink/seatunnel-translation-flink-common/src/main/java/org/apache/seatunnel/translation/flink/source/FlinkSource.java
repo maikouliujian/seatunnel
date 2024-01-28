@@ -73,7 +73,9 @@ public class FlinkSource<SplitT extends SourceSplit, EnumStateT extends Serializ
         org.apache.seatunnel.api.source.SourceReader.Context context =
                 new FlinkSourceReaderContext(readerContext, source);
         org.apache.seatunnel.api.source.SourceReader<SeaTunnelRow, SplitT> reader =
+                //todo kafkasourcereader
                 source.createReader(context);
+        //todo 创建reader
         return new FlinkSourceReader<>(
                 reader, context, envConfig, (SeaTunnelRowType) source.getProducedType());
     }

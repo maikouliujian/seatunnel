@@ -21,7 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.apache.seatunnel.shade.com.google.common.base.Preconditions.checkArgument;
-
+//todo SeaTunnelRowType
 public class SeaTunnelRowType implements CompositeType<SeaTunnelRow> {
     private static final long serialVersionUID = 2L;
 

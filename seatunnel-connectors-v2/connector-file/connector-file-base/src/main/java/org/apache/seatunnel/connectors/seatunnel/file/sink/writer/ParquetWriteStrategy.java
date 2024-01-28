@@ -97,6 +97,7 @@ public class ParquetWriteStrategy extends AbstractWriteStrategy {
         for (Integer integer : sinkColumnsIndexInRow) {
             String fieldName = seaTunnelRowType.getFieldName(integer);
             Object field = seaTunnelRow.getField(integer);
+            //todo field->value
             recordBuilder.set(
                     fieldName.toLowerCase(),
                     resolveObject(field, seaTunnelRowType.getFieldType(integer)));

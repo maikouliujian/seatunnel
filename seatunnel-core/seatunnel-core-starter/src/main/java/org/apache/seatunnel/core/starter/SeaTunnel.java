@@ -37,6 +37,7 @@ public class SeaTunnel {
      */
     public static <T extends CommandArgs> void run(Command<T> command) throws CommandException {
         try {
+            //todo 运行flink/spark任务逻辑
             command.execute();
         } catch (ConfigRuntimeException e) {
             showConfigError(e);

@@ -14,6 +14,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
+# todo spark source 和 sink
 org.apache.seatunnel.translation.spark.source.SeaTunnelSparkSource
 org.apache.seatunnel.translation.spark.sink.SeaTunnelSparkSink

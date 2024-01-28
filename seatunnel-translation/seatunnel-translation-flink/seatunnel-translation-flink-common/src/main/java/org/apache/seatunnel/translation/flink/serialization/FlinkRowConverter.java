@@ -63,6 +63,7 @@ public class FlinkRowConverter extends RowConverter<Row> {
                 int arity = rowType.getTotalFields();
                 Row engineRow = new Row(arity);
                 for (int i = 0; i < arity; i++) {
+                    //todo 给row中设置每一个field的value
                     engineRow.setField(
                             i, convert(seaTunnelRow.getField(i), rowType.getFieldType(i)));
                 }
