@@ -57,6 +57,7 @@ public class SeaTunnelFactoryDiscovery extends AbstractPluginDiscovery<Factory> 
             if (factoryClass.isInstance(factory)) {
                 String factoryIdentifier = factory.factoryIdentifier();
                 String pluginName = pluginIdentifier.getPluginName();
+                //todo 返回匹配的工厂！！！！！！！
                 if (StringUtils.equalsIgnoreCase(factoryIdentifier, pluginName)) {
                     return factory;
                 }

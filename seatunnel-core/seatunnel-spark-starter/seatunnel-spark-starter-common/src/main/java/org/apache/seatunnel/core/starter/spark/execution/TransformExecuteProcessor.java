@@ -133,7 +133,9 @@ public class TransformExecuteProcessor
         SeaTunnelDataType<?> outputDataTYpe =
                 transform.getProducedCatalogTable().getSeaTunnelRowType();
         StructType outputSchema = (StructType) TypeConverterUtils.convert(outputDataTYpe);
+        //todo 读进来
         SeaTunnelRowConverter inputRowConverter = new SeaTunnelRowConverter(inputDataType);
+        //todo 写出去
         SeaTunnelRowConverter outputRowConverter = new SeaTunnelRowConverter(outputDataTYpe);
         ExpressionEncoder<Row> encoder = RowEncoder.apply(outputSchema);
         return stream.mapPartitions(

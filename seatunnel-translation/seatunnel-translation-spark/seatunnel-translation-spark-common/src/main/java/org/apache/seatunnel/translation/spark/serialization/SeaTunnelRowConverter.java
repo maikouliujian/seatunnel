@@ -156,6 +156,12 @@ public class SeaTunnelRowConverter extends RowConverter<SeaTunnelRow> {
         return (SeaTunnelRow) reconvert(engineRow, dataType);
     }
 
+    /***
+     * todo
+     * @param field 字段值
+     * @param dataType 字段类型
+     * @return
+     */
     private Object reconvert(Object field, SeaTunnelDataType<?> dataType) {
         if (field == null) {
             return null;

@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.Objects;
 
+//todo 用于存储一行数据
 /** SeaTunnel row type. */
 public final class SeaTunnelRow implements Serializable {
     private static final long serialVersionUID = -1L;
@@ -29,6 +30,7 @@ public final class SeaTunnelRow implements Serializable {
     private String tableId = "";
     /** The kind of change that a row describes in a changelog. */
     private RowKind kind = RowKind.INSERT;
+    //todo 存储每一个字段的值
     /** The array to store the actual internal format values. */
     private final Object[] fields;
 

@@ -100,6 +100,7 @@ public class SparkStarter implements Starter {
         DeployMode deployMode = commandArgs.getDeployMode();
         switch (deployMode) {
             case CLUSTER:
+                //todo 集群模式
                 return new ClusterModeSparkStarter(args, commandArgs);
             case CLIENT:
                 return new ClientModeSparkStarter(args, commandArgs);
@@ -196,6 +197,7 @@ public class SparkStarter implements Starter {
     protected List<String> buildFinal() {
         List<String> commands = new ArrayList<>();
         commands.add("${SPARK_HOME}/bin/spark-submit");
+        //todo mainclass
         appendOption(commands, "--class", SeaTunnelSpark.class.getName());
         appendOption(commands, "--name", this.commandArgs.getJobName());
         appendOption(commands, "--master", this.commandArgs.getMaster());

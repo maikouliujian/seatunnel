@@ -24,9 +24,10 @@ import static org.apache.seatunnel.shade.com.google.common.base.Preconditions.ch
 //todo SeaTunnelRowType
 public class SeaTunnelRowType implements CompositeType<SeaTunnelRow> {
     private static final long serialVersionUID = 2L;
-
+    //todo 字段名称
     /** The field name of the {@link SeaTunnelRow}. */
     private final String[] fieldNames;
+    //todo 字段类型
     /** The type of the field. */
     private final SeaTunnelDataType<?>[] fieldTypes;
 

@@ -30,6 +30,8 @@ import java.util.List;
  * @param <CommitInfoT> The type of commit message.
  * @param <AggregatedCommitInfoT> The type of commit message after combine.
  */
+//todo 使用SinkAggregatedCommitter会在【单节点】处理prepare commit提交阶段返回的信息，与SinkCommitter相比可以解决
+// commit(阶段二)部分失败导致的状态不一致的问题
 public interface SinkAggregatedCommitter<CommitInfoT, AggregatedCommitInfoT> extends Serializable {
 
     /** init sink aggregated committer */

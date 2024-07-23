@@ -23,7 +23,7 @@ import org.apache.seatunnel.api.configuration.Options;
 import java.util.List;
 
 public interface CommonOptions {
-
+    //todo 插件名，用于spi
     Option<String> PLUGIN_NAME =
             Options.key("plugin_name")
                     .stringType()
