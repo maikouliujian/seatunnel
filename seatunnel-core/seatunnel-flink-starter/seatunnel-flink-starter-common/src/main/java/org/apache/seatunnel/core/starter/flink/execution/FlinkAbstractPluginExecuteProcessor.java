@@ -73,6 +73,7 @@ public abstract class FlinkAbstractPluginExecuteProcessor<T>
             JobContext jobContext) {
         this.pluginConfigs = pluginConfigs;
         this.jobContext = jobContext;
+        //todo 初始化spi
         this.plugins = initializePlugins(jarPaths, pluginConfigs);
         this.envConfig = envConfig;
     }

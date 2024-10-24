@@ -72,6 +72,7 @@ public class IncrementalSourceSplitReader<C extends SourceConfig>
         checkNeedStopBinlogReader();
         Iterator<SourceRecords> dataIt = null;
         try {
+            //todo 真正读取数据的地方！！！！！！
             dataIt = currentFetcher.pollSplitRecords();
         } catch (InterruptedException | SeaTunnelException e) {
             log.warn("fetch data failed.", e);

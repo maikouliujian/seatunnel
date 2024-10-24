@@ -78,6 +78,7 @@ import static org.apache.seatunnel.connectors.seatunnel.cdc.mysql.utils.MySqlCon
 import static org.apache.seatunnel.connectors.seatunnel.cdc.mysql.utils.MySqlConnectionUtils.createMySqlConnection;
 
 /** The context for fetch task that fetching data of snapshot split from MySQL data source. */
+//todo 拉取数据核心类
 @Slf4j
 public class MySqlSourceFetchTaskContext extends JdbcSourceFetchTaskContext {
 

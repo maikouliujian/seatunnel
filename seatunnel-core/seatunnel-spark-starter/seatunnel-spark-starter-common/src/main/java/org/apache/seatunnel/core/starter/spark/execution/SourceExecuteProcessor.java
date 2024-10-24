@@ -97,6 +97,7 @@ public class SourceExecuteProcessor extends SparkAbstractPluginExecuteProcessor<
                             //todo 通过format是SeaTunnelSource===>找到了SeaTunnelSparkSource
                             .format(SeaTunnelSource.class.getSimpleName())
                             .option(CommonOptions.PARALLELISM.key(), parallelism)
+                            //todo 将source序列化
                             .option(
                                     Constants.SOURCE_SERIALIZATION,
                                     SerializationUtils.objectToString(source))

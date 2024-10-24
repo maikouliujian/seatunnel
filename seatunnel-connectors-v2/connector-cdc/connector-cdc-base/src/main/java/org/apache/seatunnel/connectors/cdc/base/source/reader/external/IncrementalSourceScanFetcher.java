@@ -49,6 +49,7 @@ import static org.apache.seatunnel.connectors.cdc.base.source.split.wartermark.W
 /**
  * Fetcher to fetch data from table split, the split is the snapshot split {@link SnapshotSplit}.
  */
+//todo 全量读取：Scan
 @Slf4j
 public class IncrementalSourceScanFetcher implements Fetcher<SourceRecords, SourceSplitBase> {
 

@@ -86,7 +86,7 @@ public class JdbcSourceEventDispatcher extends EventDispatcher<TableId> {
             Offset watermark,
             WatermarkKind watermarkKind)
             throws InterruptedException {
-
+        //todo 数据加入队列
         SourceRecord sourceRecord =
                 WatermarkEvent.create(
                         sourcePartition, topic, sourceSplit.splitId(), watermarkKind, watermark);

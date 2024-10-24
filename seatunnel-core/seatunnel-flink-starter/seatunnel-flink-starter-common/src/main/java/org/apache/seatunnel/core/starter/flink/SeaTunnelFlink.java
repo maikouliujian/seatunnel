@@ -22,6 +22,7 @@ import org.apache.seatunnel.core.starter.enums.EngineType;
 import org.apache.seatunnel.core.starter.exception.CommandException;
 import org.apache.seatunnel.core.starter.flink.args.FlinkCommandArgs;
 import org.apache.seatunnel.core.starter.utils.CommandLineUtils;
+//todo flink任务逻辑mainclass
 //todo flink任务执行逻辑的统一封装类，即被抽象的统一逻辑
 public class SeaTunnelFlink {
     public static void main(String[] args) throws CommandException {

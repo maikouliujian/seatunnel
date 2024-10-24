@@ -45,7 +45,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.apache.seatunnel.connectors.seatunnel.cdc.mysql.source.offset.BinlogOffset.NO_STOPPING_OFFSET;
-
+//todo 读取binlog数据的task
 public class MySqlBinlogFetchTask implements FetchTask<SourceSplitBase> {
     private final IncrementalSplit split;
     private volatile boolean taskRunning = false;
@@ -58,11 +58,12 @@ public class MySqlBinlogFetchTask implements FetchTask<SourceSplitBase> {
     public void execute(FetchTask.Context context) throws Exception {
         MySqlSourceFetchTaskContext sourceFetchContext = (MySqlSourceFetchTaskContext) context;
         taskRunning = true;
-
+        //todo
         MySqlStreamingChangeEventSource mySqlStreamingChangeEventSource =
                 new MySqlStreamingChangeEventSource(
                         sourceFetchContext.getDbzConnectorConfig(),
                         sourceFetchContext.getConnection(),
+                        //todo
                         sourceFetchContext.getDispatcher(),
                         sourceFetchContext.getErrorHandler(),
                         Clock.SYSTEM,

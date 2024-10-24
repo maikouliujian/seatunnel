@@ -51,6 +51,7 @@ class FetchTask<E, SplitT extends SourceSplit> implements SplitFetcherTask {
     public void run() throws IOException {
         try {
             if (!isWakeup() && lastRecords == null) {
+                //todo 真正读取数据的地方！！！！！！
                 lastRecords = splitReader.fetch();
                 log.debug("Fetch records from split fetcher {}", fetcherIndex);
             }

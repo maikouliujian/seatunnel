@@ -49,6 +49,7 @@ public class SeaTunnelSourceTable implements Table, SupportsRead {
 
     public SeaTunnelSourceTable(Map<String, String> properties) {
         this.properties = properties;
+        //todo 获取真正的source！！！！！！在类SourceExecuteProcessor中100行被序列化了
         String sourceSerialization = properties.getOrDefault(Constants.SOURCE_SERIALIZATION, "");
         if (StringUtils.isBlank(sourceSerialization)) {
             throw new IllegalArgumentException("source.serialization must be specified");

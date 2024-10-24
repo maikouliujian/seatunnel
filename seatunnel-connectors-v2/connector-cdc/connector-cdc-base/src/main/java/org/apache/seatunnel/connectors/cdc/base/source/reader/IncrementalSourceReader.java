@@ -84,6 +84,7 @@ public class IncrementalSourceReader<T, C extends SourceConfig>
             DebeziumDeserializationSchema<T> debeziumDeserializationSchema) {
         super(
                 elementsQueue,
+                //todo 拉取数据的管理者
                 new SingleThreadFetcherManager<>(elementsQueue, splitReaderSupplier::get),
                 recordEmitter,
                 options,

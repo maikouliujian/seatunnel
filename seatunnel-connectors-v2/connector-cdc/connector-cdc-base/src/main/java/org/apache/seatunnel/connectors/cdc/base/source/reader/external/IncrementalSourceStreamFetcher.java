@@ -54,6 +54,7 @@ import static org.apache.seatunnel.connectors.cdc.base.utils.SourceRecordUtils.g
  * Fetcher to fetch data from table split, the split is the incremental split {@link
  * IncrementalSplit}.
  */
+//todo 增量读取
 @Slf4j
 public class IncrementalSourceStreamFetcher implements Fetcher<SourceRecords, SourceSplitBase> {
     private final FetchTask.Context taskContext;
@@ -115,7 +116,7 @@ public class IncrementalSourceStreamFetcher implements Fetcher<SourceRecords, So
     public boolean isFinished() {
         return currentIncrementalSplit == null || !streamFetchTask.isRunning();
     }
-
+    //todo 读取数据
     @Override
     public Iterator<SourceRecords> pollSplitRecords()
             throws InterruptedException, SeaTunnelException {
@@ -123,11 +124,14 @@ public class IncrementalSourceStreamFetcher implements Fetcher<SourceRecords, So
 
         Iterator<SourceRecords> sourceRecordsIterator = Collections.emptyIterator();
         if (streamFetchTask.isRunning()) {
+            //todo 从队列中取出数据！！！！！！
             List<DataChangeEvent> batch = queue.poll();
             if (!batch.isEmpty()) {
                 if (schemaChangeResolver != null) {
+                    //todo schema change
                     sourceRecordsIterator = splitSchemaChangeStream(batch);
                 } else {
+                    //todo schema no change
                     sourceRecordsIterator = splitNormalStream(batch);
                 }
             }
